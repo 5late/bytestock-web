@@ -8,7 +8,6 @@ st.set_page_config(initial_sidebar_state='collapsed')
 logo = Image.open('pics/bytestock-logo.png')
 st.image(logo)
 
-chart_data = pd.DataFrame(np.random.randn(20,3), columns = ['a', 'b', 'c'])
+stock = st.text_input(label='See data over a specified time period.', placeholder='Enter a stock ticker: (Ex. AAPL)', max_chars=5)
 
-st.line_chart(chart_data)
-
+st.write('You selected: $' + stock)
