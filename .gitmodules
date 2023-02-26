@@ -1,0 +1,3 @@
+[submodule "bytestock-core"]
+	path = bytestock-core
+	url = https://github.com/bytestock/bytestock-core

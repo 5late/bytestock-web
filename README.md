@@ -1,1 +1,1 @@
-bytestock-web
+Frontend web for bytestock powered by streamlit.io
