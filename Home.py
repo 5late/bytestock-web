@@ -16,6 +16,8 @@ stock = st.text_input(label='See data over a specified time period.', placeholde
 
 st.write('You selected: $' + stock)
 
-open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, 3)
+days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=250, value=3, step=1, label_visibility='collapsed')
+
+open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, days)
 
 st.write('Open: ', str(daily_open))
