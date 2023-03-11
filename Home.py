@@ -22,3 +22,11 @@ if st.button(label='Query'):
     open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, days)
 
     st.write('Open: ', str(daily_open))
+
+    information = [open_days, daily_close]
+
+    chart_data = pd.DataFrame(daily_close)
+    chart_data.index = open_days
+    chart_data.columns = ['Closing Price']
+    print(chart_data)
+    st.line_chart(chart_data)
