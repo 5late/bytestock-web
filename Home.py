@@ -47,7 +47,7 @@ def chart(data, low, high, ticker):
 if st.button(label='Query'):
     open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, days)
 
-    st.write('Open: ', str(daily_open))
+    st.write('Open: ', str(daily_close))
 
     lowest_price = min(daily_close) - 3
     highest_price = max(daily_close) + 3
@@ -57,3 +57,4 @@ if st.button(label='Query'):
     print(chart_data)
     
     st.altair_chart(chart(chart_data, lowest_price, highest_price, stock.upper()), use_container_width = True)
+    st.dataframe(chart_data, use_container_width = True)
