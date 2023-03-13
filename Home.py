@@ -17,7 +17,7 @@ stock = st.text_input(label='See data over a specified time period.', placeholde
 
 st.write('You selected: $' + stock)
 
-days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=250, value=3, step=1, label_visibility='collapsed')
+days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=1250, value=3, step=1, label_visibility='collapsed')
 
 def chart(data, low, high, ticker):
     hover = alt.selection_single(fields=["date"], nearest=True, on="mouseover", empty="none")
@@ -47,14 +47,10 @@ def chart(data, low, high, ticker):
 if st.button(label='Query'):
     open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, days)
 
-    st.write('Open: ', str(daily_close))
-
     lowest_price = min(daily_close) - 3
     highest_price = max(daily_close) + 3
 
     chart_data = pd.DataFrame(list(zip(daily_close, open_days)), columns=['price', 'date'])
-
-    print(chart_data)
     
     st.altair_chart(chart(chart_data, lowest_price, highest_price, stock.upper()), use_container_width = True)
     st.dataframe(chart_data, use_container_width = True)
