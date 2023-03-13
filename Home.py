@@ -45,7 +45,7 @@ def chart(data, low, high, ticker):
     return (lines + points + tooltips).interactive()
 
 if st.button(label='Query'):
-    open_days, daily_open, daily_close, daily_high, daily_low = data.getOCHLData(stock, days)
+    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = data.getOCHLData(stock, days)
 
     lowest_price = min(daily_close) - 3
     highest_price = max(daily_close) + 3
