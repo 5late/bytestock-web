@@ -1,7 +1,7 @@
-import streamlit as st
+import streamlit as st 
 
-with open('./pages/about.md') as file:
-    lines = file.readlines()
+with open('./pages/about.md') as file: 
+    lines = file.readlines() 
 
-    for line in lines:
-        st.write(line)
+    for line in lines: 
+        st.write(line) 
