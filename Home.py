@@ -6,10 +6,10 @@ from PIL import Image
 import sys
 sys.path.append('bytestock-core')
 
-import data
-
+import data  
+  
 st.set_page_config(initial_sidebar_state='collapsed')
-
+  
 logo = Image.open('pics/bytestock-logo.png')
 st.image(logo)
 
