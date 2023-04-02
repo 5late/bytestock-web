@@ -34,3 +34,5 @@ for i in range(18):
     rt_previous_close, rt_open, rt_current, rt_high, rt_low, rt_change, rt_change_percent = info[i]
 
     cols[i].metric(stock, f"${round(rt_current, 2)}", f"{round(rt_change_percent, 2)}%")
+# 
+#
