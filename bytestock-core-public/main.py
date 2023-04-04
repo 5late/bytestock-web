@@ -26,7 +26,7 @@ def main(stock, days)->None: # creating the main() functions
         f.close()
 
     #calculations.mathematics(daily_adj_close)
-    args = ("./calc")
+    args = ("./bytestock-core-public/calc")
     popen = subprocess.Popen(args, stdout=subprocess.PIPE)
     popen.wait()
     output = popen.stdout.readlines()
