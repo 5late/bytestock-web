@@ -3,10 +3,12 @@ import altair as alt
 import pandas as pd
 import numpy as np
 from PIL import Image
+import time
 import sys
 sys.path.append('bytestock-core')
 
-import data  
+import data
+import main
   
 st.set_page_config(initial_sidebar_state='collapsed')
   
@@ -17,7 +19,7 @@ stock = st.text_input('See data over a specified time period.', placeholder='Ent
 
 st.write('You selected: $' + stock)
 
-days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=1250, value=3, step=1, label_visibility='collapsed')
+days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=3, step=1, label_visibility='collapsed')
 
 def chart(data, low, high, ticker):
     hover = alt.selection_single(fields=["date"], nearest=True, on="mouseover", empty="none")
@@ -54,3 +56,20 @@ if st.button(label='Query'):
     
     st.altair_chart(chart(chart_data, lowest_price, highest_price, stock.upper()), use_container_width = True)
     st.dataframe(chart_data, use_container_width = True)
+
+if st.button(label='Analayze'):
+    with st.spinner('Analayzing your stock...'):
+        main.main(stock, days)
+
+    with open('output.txt') as file: 
+        lines = file.readlines()
+        periods = []
+        probabilities = []
+ 
+        for line in lines:
+            periods.append(line.split(':')[1].split(':')[0])
+            probabilities.append(line.split(':')[3].split(':')[0])
+            
+        analayze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability'])
+
+        st.dataframe(analayze_data, use_container_width=True)
