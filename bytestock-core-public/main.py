@@ -1,10 +1,12 @@
 """Libraries"""
 import calculations # importing the calculations module to use its functions
-import data # importing the data module to use its functions
+from data import Data # importing the data module to use its functions
 import subprocess
 
 
 def main(stock, days)->None: # creating the main() functions
+
+    get_data = Data(stock, days)
     """Main Function"""
     """
     while True: # infinite loop
@@ -17,7 +19,7 @@ def main(stock, days)->None: # creating the main() functions
             print("Enter a valid amount of days")
     """
 
-    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = data.getOCHLData(stock, days) #Not close data, rather, open; we need Adj Close
+    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = get_data.getOCHLData() #Not close data, rather, open; we need Adj Close
     with open("close-data.txt", "w") as f:
         for val in daily_adj_close:
             f.write(str(val)+"\n")
@@ -37,6 +39,3 @@ def main(stock, days)->None: # creating the main() functions
             newline = f'Period:{period}:Probability:{probability}\n'
             f.write(newline)
 
-"""Main Program"""
-if __name__ == "__main__":
-    main() # calling the main function
