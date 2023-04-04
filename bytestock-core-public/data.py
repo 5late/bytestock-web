@@ -44,7 +44,7 @@ class Data:
             stock = yf.Ticker(self.ticker)
             data = stock.fast_info
 
-        rt_previous_close = list(stock.history(period=f'2d')['Close'])[-2]
+        rt_previous_close = list(stock.history(period=f'2d')['Close'])[0]
         rt_open = data.open
         rt_current = data.last_price
         rt_high = data.day_high
