@@ -1,31 +1,33 @@
-import streamlit as st
+#Description: Main file for the ByteStock web app. This file contains the main code for the web app.
+
+import streamlit as st 
 import altair as alt
 import pandas as pd
 import numpy as np
 from PIL import Image
 import time
 import sys
-sys.path.append('bytestock-core-public')
+sys.path.append('bytestock-core-public') # Imports the bytestock-core-public folder
 
 from data import Data
 import main
-  
 
-st.set_page_config(initial_sidebar_state='collapsed')
-  
-logo = Image.open('pics/bytestock-logo.png')
+
+st.set_page_config(initial_sidebar_state='collapsed') # Collapses the sidebar by default
+
+logo = Image.open('pics/bytestock-logo.png') # Logo
 st.image(logo)
 
-stock = st.text_input('See data over a specified time period.', placeholder='Enter a stock ticker: (Ex. AAPL)', max_chars=5)
+stock = st.text_input('See data over a specified time period.', placeholder='Enter a stock ticker: (Ex. AAPL)', max_chars=5) # Stock ticker input
 
-st.write('You selected: $' + stock)
+st.write('You selected: $' + stock) # Stock ticker output
 
-days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=3, step=1, label_visibility='collapsed')
+days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=3, step=1, label_visibility='collapsed') # Number of days input
 
 
-get_data = Data(stock, days)
+get_data = Data(stock, days) # Data object
 
-def chart(data, low, high, ticker):
+def chart(data, low, high, ticker): # Chart function
     hover = alt.selection_single(fields=["date"], nearest=True, on="mouseover", empty="none")
 
     lines = (alt.Chart(data, title=f"${ticker} Historical Price").mark_line().encode(x="date", y=alt.Y("price", scale=alt.Scale(domain=[low, high]))))
@@ -50,22 +52,22 @@ def chart(data, low, high, ticker):
     )
     return (lines + points + tooltips).interactive()
 
-if st.button(label='Query'):
-    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = get_data.getOCHLData()
+if st.button(label='Query'): # Query button
+    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = get_data.getOCHLData() # Gets data from data.py
 
     lowest_price = min(daily_close) - 3
     highest_price = max(daily_close) + 3
 
-    chart_data = pd.DataFrame(list(zip(daily_close, open_days)), columns=['price', 'date'])
+    chart_data = pd.DataFrame(list(zip(daily_close, open_days)), columns=['price', 'date']) # Dataframe for chart
     
     st.altair_chart(chart(chart_data, lowest_price, highest_price, stock.upper()), use_container_width = True)
     st.dataframe(chart_data, use_container_width = True)
 
-if st.button(label='Analayze'):
+if st.button(label='Analyze'): # Analyze button
     with st.spinner('Analayzing your stock...'):
         main.main(stock, days)
 
-    with open('./bytestock-core-public/output.txt') as file: 
+    with open('./bytestock-core-public/output.txt') as file:
         lines = file.readlines()
         periods = []
         probabilities = []
@@ -74,6 +76,6 @@ if st.button(label='Analayze'):
             periods.append(line.split(':')[1].split(':')[0])
             probabilities.append(line.split(':')[3].split(':')[0])
             
-        analayze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability'])
+        analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
 
         st.dataframe(analayze_data, use_container_width=True)
