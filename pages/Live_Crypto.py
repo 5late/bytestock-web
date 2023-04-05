@@ -1,7 +1,7 @@
 import streamlit as st
 import sys 
 
-sys.path.append('../bytestock-core')
+sys.path.append('./bytestock-core-public')
 
 from data import Data
 

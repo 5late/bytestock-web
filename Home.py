@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 import time
 import sys
-sys.path.append('bytestock-core')
+sys.path.append('bytestock-core-public')
 
 from data import Data
 import main
@@ -65,7 +65,7 @@ if st.button(label='Analayze'):
     with st.spinner('Analayzing your stock...'):
         main.main(stock, days)
 
-    with open('output.txt') as file: 
+    with open('./bytestock-core-public/output.txt') as file: 
         lines = file.readlines()
         periods = []
         probabilities = []
