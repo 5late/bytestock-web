@@ -39,6 +39,7 @@ class Data:
     @st.cache_data
     def getRealTimeOCHL(_self) ->list:
         """Gets Real Time Data"""
+	self = _self
         rate_limit_free = self.miscellaneous.telemetry()
         if rate_limit_free:
             stock = yf.Ticker(self.ticker)
