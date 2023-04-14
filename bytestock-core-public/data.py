@@ -37,7 +37,7 @@ class Data:
         return open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low
 
     @st.cache_data
-    def getRealTimeOCHL(self) ->list:
+    def getRealTimeOCHL(_self) ->list:
         """Gets Real Time Data"""
         rate_limit_free = self.miscellaneous.telemetry()
         if rate_limit_free:
