@@ -5,7 +5,7 @@ import sys
 
 sys.path.append('./bytestock-core-public')
 
-from data import Data
+import data
 
 st.set_page_config(layout="wide")  # Set the page layout to wide
 
@@ -33,9 +33,9 @@ with open('./pages/crypto.txt', 'r') as f:
 for i in range(18): # Loop through the list of stocks
     stock = lines[i].rstrip()
 
-    get_Data = Data(stock, 1) # Get the data for the stock
+    #get_Data = Data(stock, 1) # Get the data for the stock
 
-    info.append(get_Data.getRealTimeOCHL()) # Get the real time data for the stock
+    info.append(data.getRealTimeOCHL(stock, 1)) # Get the real time data for the stock
     rt_previous_close, rt_open, rt_current, rt_high, rt_low, rt_change, rt_change_percent = info[i]
 
     cols[i].metric(stock, f"${round(rt_current, 2)}", f"{round(rt_change_percent, 2)}%") # Display the data in the columns
