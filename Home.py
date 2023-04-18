@@ -9,7 +9,7 @@ import time
 import sys
 sys.path.append('bytestock-core-public') # Imports the bytestock-core-public folder
 
-from data import Data
+import data
 import main
 
 
@@ -23,9 +23,6 @@ stock = st.text_input('See data over a specified time period.', placeholder='Ent
 st.write('You selected: $' + stock) # Stock ticker output
 
 days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=3, step=1, label_visibility='collapsed') # Number of days input
-
-
-get_data = Data(stock, days) # Data object
 
 def chart(data, low, high, ticker): # Chart function
     hover = alt.selection_single(fields=["date"], nearest=True, on="mouseover", empty="none")
@@ -53,7 +50,7 @@ def chart(data, low, high, ticker): # Chart function
     return (lines + points + tooltips).interactive()
 
 if st.button(label='Query'): # Query button
-    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = get_data.getOCHLData() # Gets data from data.py
+    open_days, daily_open, daily_close, daily_adj_close, daily_high, daily_low = data.getOCHLData(days, stock) # Gets data from data.py
 
     lowest_price = min(daily_close) - 3
     highest_price = max(daily_close) + 3

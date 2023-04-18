@@ -1,13 +1,13 @@
-# Description: This file is used to display the live stock prices of the stocks in the stocks.txt file.
+# Description: This file is used to display the live crypto prices on the home page of the website.
 
-import streamlit as st # import
+import streamlit as st
 import sys 
 
 sys.path.append('./bytestock-core-public')
 
-from data import Data
+import data
 
-st.set_page_config(layout="wide") # Set the page layout to wide
+st.set_page_config(layout="wide")  # Set the page layout to wide
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 st.text("")
@@ -31,12 +31,11 @@ with open('./pages/stocks.txt', 'r') as f:
     lines = f.readlines()
 
 for i in range(18): # Loop through the list of stocks
-    stock = lines[i].rstrip() # Get the stock ticker
+    stock = lines[i].rstrip()
 
-    get_Data = Data(stock, 1) # Get the data for the stock
+    #get_Data = Data(stock, 1) # Get the data for the stock
 
-    info.append(get_Data.getRealTimeOCHL()) # Get the real time data for the stock
+    info.append(data.getRealTimeOCHL(stock, 1)) # Get the real time data for the stock
     rt_previous_close, rt_open, rt_current, rt_high, rt_low, rt_change, rt_change_percent = info[i]
 
     cols[i].metric(stock, f"${round(rt_current, 2)}", f"{round(rt_change_percent, 2)}%") # Display the data in the columns
-
