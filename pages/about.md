@@ -12,10 +12,6 @@ You can find the GitHub code [here](https://github.com/bytestock).
  
 bytestock is solely a research project. We do not advise any financial decisions whatsoever. All information is publicly available and our website and core infrastructure is open source. We do not recommend taking any financial decisions based on any information provided by bytestock. 
 
-# Bytestock
-
-![Bytestock logo](https://raw.githubusercontent.com/bytestock/.github/main/profile/pics/bytestock-logo-red.png)
-
 ## Objective
 
 Run simulations to find out if there is a potential to predict where stock prices will be in the immediate future (5 to 30 days) based on recent price movements.
@@ -27,15 +23,6 @@ Bytestock is a research project by [Slate](https://github.com/5late), [Ryan Alum
 ## Open Source
 
 You can check out the code behind the [core program](https://github.com/bytestock/bytestock-core) or the [web interface](https://github.com/bytestock/bytestock-web).
-
-## Write-Up
-
-To read the documentation, click below.
-
- <details>
-
-<summary>CLICK HERE TO READ DOCUMENTATION</summary>
-<br>
 
 ## Table of Contents
 
