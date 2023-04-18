@@ -1,6 +1,6 @@
 # About bytestock
 
-![Bytestock logo](https://github.com/bytestock/.github/blob/main/profile/pics/bytestock-logo-red.png)
+![Bytestock logo](https://raw.githubusercontent.com/bytestock/.github/main/profile/pics/bytestock-logo-red.png)
 
 ## What is bytestock?
  
