@@ -64,15 +64,15 @@ if st.button(label='Query'): # Query button
     with st.spinner('Analayzing your stock...'):
         main.main(stock, days)
 '''
-    with open('./bytestock-core-public/output.txt') as file:
-        lines = file.readlines()
-        periods = []
-        probabilities = []
- 
-        for line in lines:
-            periods.append(line.split(':')[1].split(':')[0])
-            probabilities.append(line.split(':')[3].split(':')[0])
-            
-        analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
+with open('./bytestock-core-public/output.txt') as file:
+    lines = file.readlines()
+    periods = []
+    probabilities = []
 
-        st.dataframe(analayze_data, use_container_width=True)
+    for line in lines:
+        periods.append(line.split(':')[1].split(':')[0])
+        probabilities.append(line.split(':')[3].split(':')[0])
+
+    analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
+
+    st.dataframe(analayze_data, use_container_width=True)
