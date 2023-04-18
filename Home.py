@@ -63,7 +63,7 @@ if st.button(label='Query'): # Query button
 '''if st.button(label='Analyze'): # Analyze button
     with st.spinner('Analayzing your stock...'):
         main.main(stock, days)
-'''
+
 with open('./bytestock-core-public/output.txt') as file:
     lines = file.readlines()
     periods = []
@@ -76,3 +76,4 @@ with open('./bytestock-core-public/output.txt') as file:
     analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
 
     st.dataframe(analayze_data, use_container_width=True)
+'''
