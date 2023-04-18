@@ -22,7 +22,7 @@ stock = st.text_input('See data over a specified time period.', placeholder='Ent
 
 st.write('You selected: $' + stock) # Stock ticker output
 
-days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=3, step=1, label_visibility='collapsed') # Number of days input
+days = st.number_input(label='Include graphs for requested time period.', min_value=1, max_value=2000, value=500, step=1, label_visibility='collapsed') # Number of days input
 
 def chart(data, low, high, ticker): # Chart function
     hover = alt.selection_single(fields=["date"], nearest=True, on="mouseover", empty="none")
