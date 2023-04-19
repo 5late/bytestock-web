@@ -73,6 +73,6 @@ if st.button(label='Analyze'): # Analyze button
             periods.append(line.split(':')[1].split(':')[0])
             probabilities.append(str(round(float(line.split(':')[3].split(':')[0]), 2)) + "%")
             
-        analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period (Number of days considered)', 'Probability']).reset_index(drop=True, inplace=True) # Dataframe for chart
+        analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period (Number of days considered)', 'Probability']).set_index('Period (Number of days considered)') # Dataframe for chart
 
         st.dataframe(analyze_data, use_container_width=True)
