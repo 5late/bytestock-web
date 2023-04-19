@@ -75,4 +75,4 @@ if st.button(label='Analyze'): # Analyze button
             
         analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
 
-        st.dataframe(analayze_data, use_container_width=True)
+        st.dataframe(analyze_data, use_container_width=True)
