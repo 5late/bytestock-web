@@ -71,7 +71,7 @@ if st.button(label='Analyze'): # Analyze button
  
         for line in lines:
             periods.append(line.split(':')[1].split(':')[0])
-            probabilities.append(str(round(float(line.split(':')[3].split(':')[0], 2))) + "%")
+            probabilities.append(str(round(float(line.split(':')[3].split(':')[0]), 2)) + "%")
             
         analyze_data = pd.DataFrame(list(zip(periods, probabilities)), columns=['Period', 'Probability']) # Dataframe for chart
 
